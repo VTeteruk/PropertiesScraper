@@ -1,5 +1,4 @@
 import asyncio
-import logging
 
 import aiohttp
 from bs4 import BeautifulSoup
@@ -7,9 +6,7 @@ from bs4 import BeautifulSoup
 from models.models import Property
 from scrapers.properties_links_scraper import PropertiesLinksScraper
 from scrapers.property_card_scraper import PropertyCardScraper
-from settings import USER_AGENT, configure_logging
-
-configure_logging()
+from settings import USER_AGENT
 
 
 class PropertiesScraper(PropertiesLinksScraper, PropertyCardScraper):
