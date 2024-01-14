@@ -53,12 +53,12 @@ class PropertyCardScraper:
         images = str(soup.find("div", {"class": "thumbnail last-child first-child"}))
 
         def convert_size(img_links: str) -> str:
-            if CONVERT_IMAGES_TO_BIGGER_SIZE:
-                return img_links.replace(
-                    "w=320&h=240", "w=1024&h=1024"
-                ).replace("w=640&h=480", "w=1024&h=1024")
-            return img_links
+            return img_links.replace(
+                "w=320&h=240", "w=1024&h=1024"
+            ).replace("w=640&h=480", "w=1024&h=1024")
 
-        return ast.literal_eval(
-            convert_size(re.findall(r"\[.*]", images)[0])
-        )
+        if CONVERT_IMAGES_TO_BIGGER_SIZE:
+            return ast.literal_eval(
+                convert_size(re.findall(r"\[.*]", images)[0])
+            )
+        return ast.literal_eval(re.findall(r"\[.*]", images)[0])
